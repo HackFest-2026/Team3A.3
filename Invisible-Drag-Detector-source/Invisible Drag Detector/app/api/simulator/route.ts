@@ -1,0 +1,2 @@
+import {NextResponse} from 'next/server';
+export async function POST(req:Request){const {drift=0,speedModifier=0,ppa=.082}=await req.json();const base=16840;const windFactor=Math.max(.4,1+speedModifier*.015);const directionFactor=Math.pow(Math.cos(Math.abs(drift)*Math.PI/180),3);const loss=base*(1-directionFactor)*windFactor;return NextResponse.json({dailyLossUSD:Math.round(loss*ppa/.082),annualRecoverableUSD:Math.round(loss*ppa/.082*365),velocity:Math.round(10*windFactor),directionFactor})}

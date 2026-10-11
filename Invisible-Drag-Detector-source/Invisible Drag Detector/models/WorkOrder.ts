@@ -1,0 +1,2 @@
+import mongoose,{Schema,models,model} from 'mongoose';
+const S=new Schema({ticketId:{type:String,unique:true},turbineId:String,createdAt:{type:Date,default:Date.now},priority:String,financialLossPerDayUSD:Number,detectedYawOffsetDegrees:Number,mechanicalStressScore:Number,maintenanceAssessment:Schema.Types.Mixed,status:String,technicianAssigned:String,gpsCoordinates:{lat:Number,lng:Number},diagnosticSummary:String,recommendedAction:String});export default models.WorkOrder||model('WorkOrder',S);

@@ -1,0 +1,4 @@
+import {NextResponse} from 'next/server';import {db} from '../../../lib/mongodb';import WorkOrder from '../../../models/WorkOrder';
+export async function GET(){await db();return NextResponse.json(await WorkOrder.find().sort({createdAt:-1}).lean())}
+export async function POST(req:Request){try{await db();const b=await req.json();const count=await WorkOrder.countDocuments();const ticket=`WO-${new Date().getFullYear()}-${String(891+count).padStart(4,'0')}`;const doc=await WorkOrder.create({...b,ticketId:ticket});return NextResponse.json(doc)}catch(e){return NextResponse.json({error:String(e)},{status:500})}}
+export async function PATCH(req:Request){try{await db();const b=await req.json();const doc=await WorkOrder.findOneAndUpdate({ticketId:b.ticketId},{$set:{status:b.status}},{new:true});return NextResponse.json(doc)}catch(e){return NextResponse.json({error:String(e)},{status:500})}}

@@ -1,0 +1,3 @@
+import {NextResponse} from 'next/server';import {db} from '../../../lib/mongodb';import Turbine from '../../../models/Turbine';
+export async function GET(){try{await db();const data=await Turbine.find().sort({'currentMetrics.dailyFinancialLossUSD':-1}).lean();return NextResponse.json(data)}catch(e){return NextResponse.json({error:String(e)},{status:500})}}
+export async function PATCH(req:Request){try{await db();const body=await req.json();const t=await Turbine.findOneAndUpdate({turbineId:body.turbineId},{$set:{...body,updatedAt:new Date()}},{new:true});return NextResponse.json(t)}catch(e){return NextResponse.json({error:String(e)},{status:500})}}
