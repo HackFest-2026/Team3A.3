@@ -6,6 +6,7 @@ The Invisible Drag Detector is a wind turbine monitoring and maintenance decisio
 
 It combines SCADA-style telemetry, performance analytics, fleet monitoring, and a maintenance advisor in an interactive dashboard.
 
+<img width="1600" height="900" alt="cbe0d4d9-22fe-4d49-b5a8-d811b6b1c9c8" src="https://github.com/user-attachments/assets/e36d7985-c63e-4b60-a215-941b2d8208a4" />
 
 ## Key Features
 
